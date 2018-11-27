@@ -15,3 +15,9 @@ module Board where
     board :: Int -> Int -> [[Int]]
     board m n = replicate m (replicate n 0)
     
+    -- Fills the desired board position
+    dropPice :: [[Int]] -> Int -> Int -> [[Int]]
+    dropPice [] _ _ = [[]]
+    dropPice boardDimension i p = do
+        if i < 0 || i >= slotNum boardDimension || not (checkOpenSlot boardDimension i) then []
+        else dropEmpty boardDimension p ((boardHeight boardDimension)-1) i
