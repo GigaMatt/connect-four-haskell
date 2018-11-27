@@ -21,3 +21,5 @@ module Board where
     dropPice boardDimension i p = do
         if i < 0 || i >= slotNum boardDimension || not (checkOpenSlot boardDimension i) then []
         else dropEmpty boardDimension p ((boardHeight boardDimension)-1) i
+    
+        
