@@ -22,4 +22,7 @@ module Board where
         if i < 0 || i >= slotNum boardDimension || not (checkOpenSlot boardDimension i) then []
         else dropEmpty boardDimension p ((boardHeight boardDimension)-1) i
     
-        
+    -- Checks if board slot is open
+        checkOpenSlot :: [[Int]] -> Int -> Bool
+        checkOpenSlot [[]] _ = False
+        checkOpenSlot boardDimension i = if boardDimension!!0!!i == 0 then True else False
