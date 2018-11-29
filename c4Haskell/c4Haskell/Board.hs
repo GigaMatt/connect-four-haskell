@@ -26,3 +26,15 @@ module Board where
         checkOpenSlot :: [[Int]] -> Int -> Bool
         checkOpenSlot [[]] _ = False
         checkOpenSlot boardDimension i = if boardDimension!!0!!i == 0 then True else False
+
+    -- sees the number of slots empty lefts
+    slotNum :: [[Int]] -> Int
+    slotNum boardDimension = length (boardDimension!!0)
+
+    -- checks if theres a empty slot
+    isDraw :: [[Int]] -> Bool
+    isDraw boardDimension = isBoardFull boardDimension 0
+
+    -- check if someone won
+    checkWon :: [[Int]] -> Int -> Bool
+    checkWon boardDimension p = checkCardinals boardDimension p || checkDiagonals boardDimension p
