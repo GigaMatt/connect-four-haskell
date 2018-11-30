@@ -49,3 +49,10 @@ module Board where
         | p == 1 = '1'
         | p == 2 = '2'
         | otherwise = '?' -- Empty space
+
+    --    helper methods for checkWon
+
+        -- Check rows and colums
+        checkCardinals :: [[Int]] -> Int -> Bool
+        checkCardinals board player = checkColums board player 0
+                                        || checkRows board player 0
