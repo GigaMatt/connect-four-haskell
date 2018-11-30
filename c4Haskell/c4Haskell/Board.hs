@@ -38,3 +38,14 @@ module Board where
     -- check if someone won
     checkWon :: [[Int]] -> Int -> Bool
     checkWon boardDimension p = checkCardinals boardDimension p || checkDiagonals boardDimension p
+
+    -- prints board
+    printBoard :: [[Int]] -> String
+    printBoard board = "\n" ++ boardToStrHelper board 0 ++ "\n"
+
+    -- Converts the player number to a string character for board printing
+    playerToChar :: Int -> Char
+    playerToChar p
+        | p == 1 = '1'
+        | p == 2 = '2'
+        | otherwise = '?' -- Empty space
