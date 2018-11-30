@@ -88,3 +88,12 @@ module Board where
         | snd sqr >= boardHeight board = False
         | player == board!!(snd sqr)!!(fst sqr) = checkOneColumn board player (fst sqr, snd sqr+1) (count+1)
         | otherwise = checkOneColumn board player (fst sqr, snd sqr+1) 0
+
+
+
+    -- Check diagonals
+    checkDiagonals :: [[Int]] -> Int -> Bool
+    checkDiagonals board player =  forwslashUpper board player 0
+                                || forwslashLower board player 0
+                                || backslashUpper board player 0
+                                || backslashLower board player 0
