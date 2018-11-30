@@ -56,3 +56,18 @@ module Board where
         checkCardinals :: [[Int]] -> Int -> Bool
         checkCardinals board player = checkColums board player 0
                                         || checkRows board player 0
+                                        
+    -- check rows
+    checkRows :: [[Int]] -> Int -> Int -> Bool
+    checkRows board player y
+        | y >= boardHeight board = False
+        | checkRow board player (0, y) 0 = True
+        | otherwise = checkRows board player (y+1)
+
+    -- Check individual row for winning player
+    checkRow :: [[Int]] -> Int -> (Int, Int) -> Int -> Bool
+    checkRow board player sqr count
+        | count >= 4 = True
+        | fst sqr >= slotNum board = False
+        | player == board!!(snd sqr)!!(fst sqr) = checkRow board player (fst sqr+1, snd sqr) (count+1)
+        | otherwise = checkRow board player (fst sqr+1, snd sqr) 0
