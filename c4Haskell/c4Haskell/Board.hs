@@ -50,12 +50,14 @@ module Board where
         | p == 2 = '2'
         | otherwise = '?' -- Empty space
 
+
     --    helper methods for checkWon
 
         -- Check rows and colums
         checkCardinals :: [[Int]] -> Int -> Bool
         checkCardinals board player = checkColums board player 0
                                         || checkRows board player 0
+             
                                         
     -- check rows
     checkRows :: [[Int]] -> Int -> Int -> Bool
@@ -71,3 +73,18 @@ module Board where
         | fst sqr >= slotNum board = False
         | player == board!!(snd sqr)!!(fst sqr) = checkRow board player (fst sqr+1, snd sqr) (count+1)
         | otherwise = checkRow board player (fst sqr+1, snd sqr) 0
+
+    -- -- check column
+    checkColums :: [[Int]] -> Int -> Int -> Bool
+    checkColums board player x
+        | x >= slotNum board = False
+        | checkOneColumn board player (x, 0) 0 = True
+        | otherwise = checkColums board player (x+1)
+
+    -- Check individual column for winning player
+    checkOneColumn :: [[Int]] -> Int -> (Int, Int) -> Int -> Bool
+    checkOneColumn board player sqr count
+        | count >= 4 = True
+        | snd sqr >= boardHeight board = False
+        | player == board!!(snd sqr)!!(fst sqr) = checkOneColumn board player (fst sqr, snd sqr+1) (count+1)
+        | otherwise = checkOneColumn board player (fst sqr, snd sqr+1) 0
