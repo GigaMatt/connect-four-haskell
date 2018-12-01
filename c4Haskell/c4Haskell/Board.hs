@@ -132,3 +132,11 @@ module Board where
         | y >= boardHeight board = False
         | checkBackslash board player (0,y) 0 = True
         | otherwise = backslashLower board player (y+1)
+
+    -- Check diagonal
+    checkBackslash :: [[Int]] -> Int -> (Int, Int) -> Int -> Bool
+    checkBackslash board player sqr count
+        | count >= 4 = True
+        | snd sqr >= boardHeight board || fst sqr >= slotNum board = False
+        | player == board!!(snd sqr)!!(fst sqr) = checkBackslash board player (fst sqr+1, snd sqr+1) (count+1)
+        | otherwise = checkBackslash board player (fst sqr+1, snd sqr+1) 0
