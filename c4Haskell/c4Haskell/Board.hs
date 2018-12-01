@@ -111,3 +111,4 @@ module Board where
         | x >= slotNum board = False
         | checkForwslash board player (x, boardHeight board-1) 0 = True
         | otherwise = forwslashLower board player (x+1)
+        
