@@ -119,3 +119,9 @@ module Board where
         | snd sqr < 0 || fst sqr >= slotNum board = False
         | player == board!!(snd sqr)!!(fst sqr) = checkForwslash board player (fst sqr+1, snd sqr-1) (count+1)
         | otherwise = checkForwslash board player (fst sqr+1, snd sqr-1) 0
+
+    -- Checks the upper half
+    backslashUpper board player x
+        | x >= slotNum board = False
+        | checkBackslash board player (x,0) 0 = True
+        | otherwise = backslashUpper board player (x+1)
