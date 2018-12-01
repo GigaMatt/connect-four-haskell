@@ -104,3 +104,10 @@ module Board where
         | y >= boardHeight board = False
         | checkForwslash board player (0,y) 0 = True
         | otherwise = forwslashUpper board player (y+1)
+
+    -- Checks the bottom
+    forwslashLower :: [[Int]] -> Int -> Int -> Bool
+    forwslashLower board player x
+        | x >= slotNum board = False
+        | checkForwslash board player (x, boardHeight board-1) 0 = True
+        | otherwise = forwslashLower board player (x+1)
