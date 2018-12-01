@@ -112,3 +112,10 @@ module Board where
         | checkForwslash board player (x, boardHeight board-1) 0 = True
         | otherwise = forwslashLower board player (x+1)
         
+    -- Check single diagonal
+    checkForwslash :: [[Int]] -> Int -> (Int, Int) -> Int -> Bool
+    checkForwslash board player sqr count
+        | count >= 4 = True
+        | snd sqr < 0 || fst sqr >= slotNum board = False
+        | player == board!!(snd sqr)!!(fst sqr) = checkForwslash board player (fst sqr+1, snd sqr-1) (count+1)
+        | otherwise = checkForwslash board player (fst sqr+1, snd sqr-1) 0
