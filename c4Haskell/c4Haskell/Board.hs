@@ -125,3 +125,10 @@ module Board where
         | x >= slotNum board = False
         | checkBackslash board player (x,0) 0 = True
         | otherwise = backslashUpper board player (x+1)
+
+    -- Checks the bottom half
+    backslashLower :: [[Int]] -> Int -> Int -> Bool
+    backslashLower board player y
+        | y >= boardHeight board = False
+        | checkBackslash board player (0,y) 0 = True
+        | otherwise = backslashLower board player (y+1)
