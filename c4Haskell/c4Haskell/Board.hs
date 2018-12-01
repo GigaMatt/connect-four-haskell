@@ -97,3 +97,10 @@ module Board where
                                 || forwslashLower board player 0
                                 || backslashUpper board player 0
                                 || backslashLower board player 0
+
+    -- Checks the upper half
+    forwslashUpper :: [[Int]] -> Int -> Int -> Bool
+    forwslashUpper board player y
+        | y >= boardHeight board = False
+        | checkForwslash board player (0,y) 0 = True
+        | otherwise = forwslashUpper board player (y+1)
