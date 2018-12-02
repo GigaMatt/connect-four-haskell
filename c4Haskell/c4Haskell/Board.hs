@@ -154,3 +154,7 @@ module Board where
             if col >= slotNum board then True
             else if checkOpenSlot board col then False
             else isBoardFull board (col+1)
+
+    -- Returns height (# of rows) of the board
+    boardHeight :: [[Int]] -> Int
+    boardHeight board = length board
