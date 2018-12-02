@@ -147,3 +147,10 @@ module Board where
         | row < 0 = board
         | board!!row!!col == 0 = dropIn board player row col -- Empty slot
         | otherwise = dropEmpty board player (row-1) col -- Occupied slot
+
+    -- Determines if the board has no empty spaces left
+        isBoardFull :: [[Int]] -> Int -> Bool
+        isBoardFull board col = do
+            if col >= slotNum board then True
+            else if checkOpenSlot board col then False
+            else isBoardFull board (col+1)
