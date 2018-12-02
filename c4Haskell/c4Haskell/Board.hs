@@ -140,3 +140,10 @@ module Board where
         | snd sqr >= boardHeight board || fst sqr >= slotNum board = False
         | player == board!!(snd sqr)!!(fst sqr) = checkBackslash board player (fst sqr+1, snd sqr+1) (count+1)
         | otherwise = checkBackslash board player (fst sqr+1, snd sqr+1) 0
+
+    -- Searches for empty slot in column and drops in first open space
+    dropEmpty :: [[Int]] -> Int -> Int -> Int -> [[Int]]
+    dropEmpty board player row col
+        | row < 0 = board
+        | board!!row!!col == 0 = dropIn board player row col -- Empty slot
+        | otherwise = dropEmpty board player (row-1) col -- Occupied slot
