@@ -162,3 +162,11 @@ module Board where
     -- Rebuilds board array with player piece in desired location
     dropIn :: [[Int]] -> Int -> Int -> Int -> [[Int]]
     dropIn board player row col = (take row board ++ [take col (board!!row) ++ [player] ++ drop (col+1) (board!!row)] ++ drop (row+1) board)
+
+
+    -- Used to traverse list and construct board string representation
+    boardToStrHelper :: [[Int]] -> Int -> String
+    boardToStrHelper [[]] _ = ""
+    boardToStrHelper board row = do
+        if row >= boardHeight board then ""
+        else " " ++ (intersperse ' ' [playerToSymbol (board!!row!!i) | i <- [0..length (board!!row)-1]]) ++ " \n" ++ boardToStrHelper board (row+1)
