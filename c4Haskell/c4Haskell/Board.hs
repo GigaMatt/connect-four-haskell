@@ -158,3 +158,7 @@ module Board where
     -- Returns height (# of rows) of the board
     boardHeight :: [[Int]] -> Int
     boardHeight board = length board
+
+    -- Rebuilds board array with player piece in desired location
+    dropIn :: [[Int]] -> Int -> Int -> Int -> [[Int]]
+    dropIn board player row col = (take row board ++ [take col (board!!row) ++ [player] ++ drop (col+1) (board!!row)] ++ drop (row+1) board)
