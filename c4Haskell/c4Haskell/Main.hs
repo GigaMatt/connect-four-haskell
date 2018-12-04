@@ -14,3 +14,8 @@ module Main where
     game :: [[Int]] -> Int -> IO()
     game [[]] _ = putStrLn "Invalid Input, exiting"
     game board player = do
+        let prevPlayer = togglePlayer player -- Prev player
+        --check if a player won
+        if checkWon board prevPlayer then do
+            putStr (printBoard board)
+            putStrLn ("Player " ++ [playerToChar prevPlayer] ++ " wins!!!")
