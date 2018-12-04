@@ -170,3 +170,11 @@ module Board where
     boardToStrHelper board row = do
         if row >= boardHeight board then ""
         else " " ++ (intersperse ' ' [playerToSymbol (board!!row!!i) | i <- [0..length (board!!row)-1]]) ++ " \n" ++ boardToStrHelper board (row+1)
+
+
+    -- Changes a symbol from number to char for board representation
+    playerToSymbol :: Int -> Char
+    playerToSymbol p
+        | p == 1 = snd playerOne
+        | p == 2 = snd playerTwo
+        | otherwise = '.' -- Empty space
