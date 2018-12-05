@@ -23,8 +23,16 @@ module Main where
         --check for a draw
         else if isDraw board then putStrLn "\nIt's a draw."
 
-        --we input the pices into the board
+        --we input the pieces into the board
         else do
             putStr (printBoard board)
             putStrLn ("Player " ++ [playerToChar player] ++", pick a column to move:")
             input <- getLine
+            --check for if input is empty
+            if input == "" then do
+                putStrLn "\n--Invalid Input--"
+                game board player
+
+            else do
+                -- make index 0 = 1
+                let slot = (read input)-1
