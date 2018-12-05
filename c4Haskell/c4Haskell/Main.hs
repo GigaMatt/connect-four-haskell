@@ -19,3 +19,6 @@ module Main where
         if checkWon board prevPlayer then do
             putStr (printBoard board)
             putStrLn ("Player " ++ [playerToChar prevPlayer] ++ " wins!!!")
+
+        --check for a draw
+        else if isDraw board then putStrLn "\nIt's a draw."
