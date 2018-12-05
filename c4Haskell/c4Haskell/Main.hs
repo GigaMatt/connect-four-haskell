@@ -22,3 +22,9 @@ module Main where
 
         --check for a draw
         else if isDraw board then putStrLn "\nIt's a draw."
+
+        --we input the pices into the board
+        else do
+            putStr (printBoard board)
+            putStrLn ("Player " ++ [playerToChar player] ++", pick a column to move:")
+            input <- getLine
