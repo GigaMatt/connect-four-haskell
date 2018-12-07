@@ -14,18 +14,18 @@ module Board where
     -- Makes a new connect 4 board
     board :: Int -> Int -> [[Int]]
     board m n = replicate m (replicate n 0)
-    
+
     -- Fills the desired board position
     dropPice :: [[Int]] -> Int -> Int -> [[Int]]
     dropPice [] _ _ = [[]]
     dropPice boardDimension i p = do
         if i < 0 || i >= slotNum boardDimension || not (checkOpenSlot boardDimension i) then []
         else dropEmpty boardDimension p ((boardHeight boardDimension)-1) i
-    
+
     -- Checks if board slot is open
-        checkOpenSlot :: [[Int]] -> Int -> Bool
-        checkOpenSlot [[]] _ = False
-        checkOpenSlot boardDimension i = if boardDimension!!0!!i == 0 then True else False
+    checkOpenSlot :: [[Int]] -> Int -> Bool
+    checkOpenSlot [[]] _ = False
+    checkOpenSlot boardDimension i = if boardDimension!!0!!i == 0 then True else False
 
     -- sees the number of slots empty lefts
     slotNum :: [[Int]] -> Int
@@ -51,14 +51,15 @@ module Board where
         | otherwise = '?' -- Empty space
 
 
+
     --    helper methods for checkWon
 
         -- Check rows and colums
-        checkCardinals :: [[Int]] -> Int -> Bool
-        checkCardinals board player = checkColums board player 0
-                                        || checkRows board player 0
-             
-                                        
+    checkCardinals :: [[Int]] -> Int -> Bool
+    checkCardinals board player = checkColums board player 0
+                                    || checkRows board player 0
+
+
     -- check rows
     checkRows :: [[Int]] -> Int -> Int -> Bool
     checkRows board player y
@@ -111,7 +112,7 @@ module Board where
         | x >= slotNum board = False
         | checkForwslash board player (x, boardHeight board-1) 0 = True
         | otherwise = forwslashLower board player (x+1)
-        
+
     -- Check single diagonal
     checkForwslash :: [[Int]] -> Int -> (Int, Int) -> Int -> Bool
     checkForwslash board player sqr count
@@ -141,6 +142,7 @@ module Board where
         | player == board!!(snd sqr)!!(fst sqr) = checkBackslash board player (fst sqr+1, snd sqr+1) (count+1)
         | otherwise = checkBackslash board player (fst sqr+1, snd sqr+1) 0
 
+
     -- Searches for empty slot in column and drops in first open space
     dropEmpty :: [[Int]] -> Int -> Int -> Int -> [[Int]]
     dropEmpty board player row col
@@ -149,11 +151,11 @@ module Board where
         | otherwise = dropEmpty board player (row-1) col -- Occupied slot
 
     -- Determines if the board has no empty spaces left
-        isBoardFull :: [[Int]] -> Int -> Bool
-        isBoardFull board col = do
-            if col >= slotNum board then True
-            else if checkOpenSlot board col then False
-            else isBoardFull board (col+1)
+    isBoardFull :: [[Int]] -> Int -> Bool
+    isBoardFull board col = do
+        if col >= slotNum board then True
+        else if checkOpenSlot board col then False
+        else isBoardFull board (col+1)
 
     -- Returns height (# of rows) of the board
     boardHeight :: [[Int]] -> Int
@@ -163,14 +165,12 @@ module Board where
     dropIn :: [[Int]] -> Int -> Int -> Int -> [[Int]]
     dropIn board player row col = (take row board ++ [take col (board!!row) ++ [player] ++ drop (col+1) (board!!row)] ++ drop (row+1) board)
 
-
     -- Used to traverse list and construct board string representation
     boardToStrHelper :: [[Int]] -> Int -> String
     boardToStrHelper [[]] _ = ""
     boardToStrHelper board row = do
         if row >= boardHeight board then ""
         else " " ++ (intersperse ' ' [playerToSymbol (board!!row!!i) | i <- [0..length (board!!row)-1]]) ++ " \n" ++ boardToStrHelper board (row+1)
-
 
     -- Changes a symbol from number to char for board representation
     playerToSymbol :: Int -> Char

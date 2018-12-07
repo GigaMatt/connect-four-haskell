@@ -33,15 +33,15 @@ module Main where
                 putStrLn "\n--Invalid Input--"
                 game board player
 
-                else do
-                    -- make index 0 = 1
-                    let slot = (read input)-1
-    
-                    --check if the input is less than or grater than the bounds
-                    if slot < 0 || slot >= slotNum board then do
-                        putStrLn "\n--Invalid Input--"
-                        game board player
-                    else if not (checkOpenSlot board slot) then do
-                        putStrLn "\n--Slot is full!--"
-                        game board player
-                    else game (dropPice board slot player) (togglePlayer player)
+            else do
+                -- make index 0 = 1
+                let slot = (read input)-1
+
+                --check if the input is less than or grater than the bounds
+                if slot < 0 || slot >= slotNum board then do
+                    putStrLn "\n--Invalid Input--"
+                    game board player
+                else if not (checkOpenSlot board slot) then do
+                    putStrLn "\n--Slot is full!--"
+                    game board player
+                else game (dropPice board slot player) (togglePlayer player)
