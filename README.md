@@ -4,9 +4,9 @@
 
 ### How To Compile
 1. Open Windows Powershell
-2. Navigate (via Powershell) to the *\c4Haskell\c4Haskell* subdirectory
-3. Type _.\Main.exe_
-4. Press *Enter*
+2. Navigate (via Powershell) to the **\c4Haskell\c4Haskell** subdirectory
+3. Type **.\Main.exe***
+4. Press **Enter**
 
 ### Dependancies
 1. Huggs
