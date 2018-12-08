@@ -1,5 +1,5 @@
 # Connect Four In Haskell
-## Haskell project to play Connect Four via a terminal interface (Windows Poershell)
+## Haskell project to play Connect Four via a terminal interface (Windows Powershell)
 ![alt text](https://raw.githubusercontent.com/gigamatt/connect-four-haskell/master/img/readme_image.png)
 
 ### How To Compile
