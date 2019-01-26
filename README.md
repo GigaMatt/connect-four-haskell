@@ -1,10 +1,10 @@
 # Connect Four In Haskell
-## Haskell project to play Connect Four via a terminal interface (Windows Powershell)
+## Haskell project to play Connect Four via a terminal interface (Windows PowerShell)
 ![alt text](https://raw.githubusercontent.com/gigamatt/connect-four-haskell/master/img/readme_image.png)
 
 ### How To Compile
-1. Open Windows Powershell
-2. Navigate (via Powershell) to the **\c4Haskell\c4Haskell** subdirectory
+1. Open Windows PowerShell
+2. Navigate (via PowerShell) to the **\c4Haskell\c4Haskell** subdirectory
 3. Type **.\Main.exe**
 4. Press **Enter**
 
